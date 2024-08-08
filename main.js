@@ -50,7 +50,7 @@ function tareaEliminada(element){
 };
 
 botonAgregar.addEventListener("click" , () => {
-    const tarea = input.Value;
+    const tarea = input.value;
     if(tarea) {
         agregarTarea(tarea, id, false, false)
         LIST.push({
@@ -59,34 +59,35 @@ botonAgregar.addEventListener("click" , () => {
         hecho: false,
         eliminar: false,
     });
-    localStorage.setItem("TODO", JSON.stringify)
+    localStorage.setItem("TODO", JSON.stringify(LIST))
     id++;
     input.Value = "";
 }
 });
-lista.addEventListener("clic" , () =>{
-    const element= event.target;
-    const elementData =element.attributes.data.value;
-    if(elementData == "hecho") {
-        tareaRealizada(element) 
-    }else if(elementData =="eliminar"){
-        tareaEliminada(element)
+lista.addEventListener("click", function (event){
+    const element = event.target;
+    const elementData = element.attributes.data.value;
+    if (elementData == "hecho") {
+        tareaRealizada(element);
+    } else if (elementData == "eliminar") { 
+        tareaEliminada(element);
     };
-    localStorage.setItem("TODO", JSON.stringify(LIST))
+    localStorage.setItem("TODO", JSON.stringify(LIST));
 });
 
 let data =localStorage.getItem("TODO");
-if(data){
-    LIST=JSON.parse(data);
-    id =LIST.length;
+if(data) {
+    LIST = JSON.parse(data);
+    id = LIST.length;
     cargarLista(LIST);
-}else{
-    LIST =[];
-    id =0;
+} else {
+    LIST = [] ;
+    id = 0 ;
 }
-function cargarLista(array){
+function cargarLista (array) {
     array.forEach(
         function(item){
-        agregarTarea(item.nombre, item.id , item.hecho, item.eliminar )}
+        agregarTarea(item.nombre, item.id , item.hecho, item.eliminar );
+    }
     )
-}
+};
